@@ -1,6 +1,10 @@
 class MaxHeap {
-    constructor() {
-        this.arr = [];
+    constructor(a) {
+        // Time: O(n)
+        this.arr = a;
+        for(let i = this.arr.length - 1; i >= 0; i--) {
+            this.downHeapify(i);
+        }
     }
     upheapify(idx) {
         /**
@@ -74,14 +78,5 @@ class MaxHeap {
     }
 }
 
-let hp = new MaxHeap();
-hp.insert(4);
-hp.insert(9);
-hp.insert(-1);
-hp.insert(10);
-hp.insert(30);
-hp.insert(15);
-hp.insert(12);
-hp.display();
-hp.removeRoot();
+let hp = new MaxHeap([3,4,1,7,-1,6,13,20]);
 hp.display();
