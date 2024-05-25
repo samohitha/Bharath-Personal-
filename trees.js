@@ -151,6 +151,31 @@ function levelorder(root) {
     }
 }
 
+function levelOrderLevelWise(root) {
+    let qu = new Queue();
+    qu.enqueue(root);
+    qu.enqueue(null);
+    let result = "";
+    while(!qu.isEmpty()) {
+        let curr = qu.getFront();
+        qu.dequeue();
+        if(curr == null) {
+            // we finished the prev level
+            if(qu.isEmpty()) {
+                // for the last level when we remove null queue will be empty
+                break;
+            }
+            result += "\n";
+            qu.enqueue(null);
+        } else {
+            result += curr.data + " ";
+            if(curr.left) qu.enqueue(curr.left);
+            if(curr.right) qu.enqueue(curr.right);
+        }
+    }
+    console.log(result);
+}
+
 // hard coded tree
 let root = new Node(10); // root
 root.left = new Node(5);
@@ -165,7 +190,7 @@ root.right.right = new Node(33); // leaf
 // ino(root);
 // console.log("**");
 // post(root);
-levelorder(root);
+levelOrderLevelWise(root);
 
 /**
  * 
